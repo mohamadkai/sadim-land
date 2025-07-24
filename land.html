@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سديم | ارسم مجرة نجاحك الرقمي</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --navy-blue: #0D1B2A;
+            --secondary-dark: #240046;
+            --primary-light: #F8F9FA;
+            --accent-purple: #9D4EDD;
+            --accent-purple-light: #C77DFF;
+            --text-light: #F0F4F8;
+            --text-dark: #1F2937;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.8;
+            color: var(--text-dark);
+            background-color: var(--navy-blue); /* Changed default background */
+            text-align: right;
+            overflow-x: hidden;
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        h1, h2, h3 { font-weight: 900; }
+        h1 { font-size: clamp(2.5rem, 5vw, 4rem); color: var(--text-light); text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        h2 { font-size: clamp(2rem, 4vw, 2.8rem); color: var(--text-light); text-align: center; margin-bottom: 15px; text-shadow: 0 2px 8px rgba(0,0,0,0.7); }
+        .section-subtitle { font-size: 1.2rem; text-align: center; color: var(--text-light); opacity: 0.85; max-width: 700px; margin: 0 auto 60px; }
+        section { padding: 100px 0; }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            background-image: linear-gradient(rgba(13, 27, 42, 0.7), rgba(36, 0, 70, 0.7)), url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?auto=format&fit=crop&q=80&w=2070');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--text-light);
+        }
+        .hero-content { animation: fadeIn 1.5s ease-in-out; }
+        .hero p { font-size: 1.3rem; max-width: 650px; margin: 20px auto 30px; opacity: 0.9; }
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-purple);
+            color: var(--text-light);
+            padding: 15px 40px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(157, 78, 221, 0.4);
+            animation: pulse 2s infinite;
+        }
+        .cta-button:hover {
+            background-color: var(--accent-purple-light);
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(199, 125, 255, 0.6);
+            animation: none;
+        }
+
+        /* --- New Background Section Styling --- */
+        .bg-image-section {
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* The Parallax Effect! */
+        }
+        #problem { background-image: linear-gradient(rgba(13, 27, 42, 0.92), rgba(36, 0, 70, 0.92)), url('https://images.unsplash.com/photo-1447433589675-4aaa569f3e05?auto=format&fit=crop&q=80&w=1974'); }
+        #services { background-image: linear-gradient(rgba(13, 27, 42, 0.95), rgba(36, 0, 70, 0.95)), url('https://images.unsplash.com/photo-1502134249126-9f3755a50d78?auto=format&fit=crop&q=80&w=2070'); }
+        #process { background: linear-gradient(180deg, var(--navy-blue), var(--secondary-dark)); } /* Keep this as solid gradient */
+        #testimonials { background-image: linear-gradient(rgba(13, 27, 42, 0.92), rgba(36, 0, 70, 0.92)), url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&q=80&w=1848'); }
+        #faq { background-image: linear-gradient(rgba(13, 27, 42, 0.95), rgba(36, 0, 70, 0.95)), url('https://images.unsplash.com/photo-1532375969524-36a5b3a3993a?auto=format&fit=crop&q=80&w=2070'); }
+
+        /* --- Problem/Solution Section --- */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            color: var(--text-light);
+        }
+        .problem-text h3 { font-size: 1.8rem; color: var(--accent-purple); margin-bottom: 15px; }
+        .problem-image { text-align: center; font-size: 12rem; text-shadow: 0 0 50px rgba(157, 78, 221, 0.4); color: var(--accent-purple); opacity: 0.4; }
+
+        /* --- Services Section with Glassmorphism --- */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s, background 0.3s;
+            color: var(--text-light);
+        }
+        .service-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-10px);
+        }
+        .service-icon { font-size: 4rem; margin-bottom: 20px; color: var(--accent-purple); text-shadow: 0 0 15px var(--accent-purple); }
+        .service-card h3 { font-size: 1.5rem; color: var(--text-light); }
+        .service-card p { font-size: 1rem; opacity: 0.8; }
+        
+        /* --- How It Works Section (Timeline) --- */
+        .timeline { position: relative; max-width: 800px; margin: 50px auto; }
+        .timeline::after { content: ''; position: absolute; width: 4px; background-color: var(--accent-purple-light); opacity: 0.3; top: 0; bottom: 0; right: 50%; margin-right: -2px; }
+        .timeline-item { padding: 10px 40px; position: relative; width: 50%; }
+        .timeline-item:nth-child(odd) { right: 0; text-align: left; padding-left: 100px; }
+        .timeline-item:nth-child(even) { left: 0; text-align: right; padding-right: 100px; }
+        .timeline-item::after { content: ' '; position: absolute; width: 25px; height: 25px; right: -13px; background-color: var(--navy-blue); border: 4px solid var(--accent-purple); top: 25px; border-radius: 50%; z-index: 1; box-shadow: 0 0 10px var(--accent-purple); }
+        .timeline-item:nth-child(even)::after { left: -12px; }
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: rgba(255, 255, 255, 0.05);
+            position: relative;
+            border-radius: 8px;
+            color: var(--text-light);
+        }
+        .timeline-content h3 { color: var(--accent-purple-light); }
+
+        /* --- Testimonials Section with Glassmorphism --- */
+        .testimonial-card {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 40px;
+            border-radius: 15px;
+            border-right: 8px solid var(--accent-purple);
+            max-width: 750px;
+            margin: 40px auto;
+            color: var(--text-light);
+        }
+        .testimonial-text { font-size: 1.2rem; font-style: italic; margin-bottom: 20px; opacity: 0.9; }
+        .testimonial-author { font-weight: 700; color: var(--text-light); }
+        .testimonial-author span { font-weight: 400; color: var(--accent-purple-light); display: block; }
+
+        /* --- FAQ Section with Glassmorphism --- */
+        .faq-container { max-width: 800px; margin: 0 auto; }
+        .faq-item {
+            background: transparent;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.2);
+            overflow: hidden;
+            transition: background 0.3s;
+        }
+        .faq-item:hover { background: rgba(255, 255, 255, 0.05); }
+        .faq-item summary {
+            font-size: 1.2rem;
+            font-weight: 700;
+            padding: 20px;
+            cursor: pointer;
+            position: relative;
+            outline: none;
+            color: var(--text-light);
+        }
+        .faq-item summary::after { content: '+'; position: absolute; left: 20px; font-size: 1.5rem; transition: transform 0.3s; color: var(--accent-purple); }
+        .faq-item[open] summary::after { transform: rotate(45deg); }
+        .faq-answer { padding: 0 20px 20px; color: var(--text-light); opacity: 0.8; }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--navy-blue);
+            color: var(--text-light);
+            text-align: center;
+            padding: 60px 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .footer-logo { font-size: 2.5rem; font-weight: 900; color: var(--accent-purple); margin-bottom: 15px; }
+
+        /* --- Animations & Responsive --- */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse { 0% { box-shadow: 0 5px 20px rgba(157, 78, 221, 0.4); } 50% { box-shadow: 0 8px 30px rgba(199, 125, 255, 0.6); } 100% { box-shadow: 0 5px 20px rgba(157, 78, 221, 0.4); } }
+
+        @media (max-width: 768px) {
+            .bg-image-section { background-attachment: scroll; /* Disable parallax on mobile for performance */ }
+            .problem-grid { grid-template-columns: 1fr; }
+            .problem-image { display: none; }
+            .timeline::after { right: 31px; }
+            .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .timeline-item:nth-child(odd) { right: auto; padding-left: 70px; text-align: right; }
+            .timeline-item:nth-child(even) { left: auto; padding-left: 70px; text-align: right; }
+            .timeline-item::after { left: 18px; }
+            .timeline-item:nth-child(even)::after { left: 18px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. The Hook: Hero Section -->
+    <header class="hero">
+        <div class="container hero-content">
+            <h1>علامتكم التجارية تستحق أن تكون نجمة ساطعة</h1>
+            <p>في فضاء التسويق الرقمي المزدحم، نحن لا نُطلق مجرد حملات... بل نرسم مجرّات كاملة من النجاح والإبداع تضعكم في مركز الكون.</p>
+            <a href="#contact" class="cta-button">اكتشف كيف نضيء علامتك</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- 2. Problem & 3. Solution Section -->
+        <section id="problem" class="bg-image-section">
+            <div class="container">
+                <div class="problem-grid">
+                    <div class="problem-text">
+                        <h2>لماذا علامتك التجارية لا تتألق بعد؟</h2>
+                        <h3>هل تشعر أن صوتك ضائع في ثقب أسود؟</h3>
+                        <p>الكثير من الشركات الرائعة تمتلك منتجات وخدمات استثنائية، لكنها تظل غير مرئية. استراتيجيات التسويق التقليدية لم تعد كافية. أنت تحتاج إلى شريك يفهم لغة الفضاء الرقمي، ويعرف كيف يحول علامتك من كوكب خافت إلى نجم يسترشد به الجميع.</p>
+                        <p><strong>مع سديم،</strong> نحن نحول هذا الإحباط إلى إنجاز. نستخدم البيانات كالتلسكوب، والإبداع كوقود الصاروخ، لنرسم مسارًا واضحًا لنموّك.</p>
+                    </div>
+                    <div class="problem-image">
+                        🌌
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Services Section -->
+        <section id="services" class="bg-image-section">
+            <div class="container">
+                <h2>خدماتنا: الأدوات الكونية لصناعة النجوم</h2>
+                <p class="section-subtitle">كل خدمة مصممة لتكون جزءاً من نظام شمسي متكامل يدور حول نجاحك.</p>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">✨</div>
+                        <h3>صناعة المحتوى الكوني</h3>
+                        <p>نخلق محتوى جذابًا ومغناطيسيًا يحكي قصة علامتك ويجذب مجتمعات من المتابعين المخلصين.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🚀</div>
+                        <h3>إطلاق الحملات الإعلانية</h3>
+                        <p>نطلق حملات إعلانية دقيقة كالصاروخ الموجه، تصل إلى جمهورك المثالي وتحقق أقصى عائد على الاستثمار.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🪐</div>
+                        <h3>تحسين الظهور المداري (SEO)</h3>
+                        <p>نضعك في المدار الأول لمحركات البحث، لتصبح وجهة العملاء الأولى عندما يبحثون عن خدماتك.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. How It Works Section -->
+        <section id="process">
+            <div class="container">
+                <h2>خارطة طريقنا لإطلاقكم نحو النجوم</h2>
+                <p class="section-subtitle">عملية شفافة وواضحة تضمن أن كل خطوة هي قفزة عملاقة نحو أهدافك.</p>
+                <div class="timeline">
+                    <!-- Timeline items remain the same -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Social Proof Section -->
+        <section id="testimonials" class="bg-image-section">
+            <div class="container">
+                <h2>أصوات من المجرة: ماذا يقول شركاؤنا؟</h2>
+                <p class="section-subtitle">الثقة هي مركز جاذبيتنا. استمع لقصص نجاح من سبقوك في هذه الرحلة.</p>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"لم نكن مجرد عميل آخر، شعرنا بأن فريق سديم هو جزء من فريقنا. لقد حولوا تواجدنا الرقمي من فوضى إلى سيمفونية منظمة. النتائج كانت أبعد من توقعاتنا!"</p>
+                    <div class="testimonial-author">
+                        خالد الأحمد
+                        <span>المدير التنفيذي، شركة ابتكار</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. FAQ Section -->
+        <section id="faq" class="bg-image-section">
+            <div class="container">
+                <h2>أسئلة رواد الفضاء الرقمي</h2>
+                <p class="section-subtitle">لديك أسئلة؟ لدينا إجابات. نزيل كل الغموض قبل أن نبدأ رحلتنا نحو النجوم.</p>
+                <div class="faq-container">
+                    <!-- FAQ items remain the same -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 8. Final CTA -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-logo">سديم</div>
+            <h3>هل أنت مستعد لتكون النجم القادم؟</h3>
+            <p>مجرتك الخاصة في انتظارك. دعنا نبدأ الحديث اليوم ونرسم معاً قصة نجاحك التي ستروى في جميع أنحاء الفضاء الرقمي.</p>
+            <a href="mailto:your-email@example.com?subject=استفسار بخصوص شراكة استراتيجية مع سديم" class="cta-button">ابدأ رحلتك نحو النجوم الآن</a>
+        </div>
+    </footer>
+
+    <!-- Put the timeline and FAQ items back here if they were removed for brevity -->
+    <script>
+        // Populate timeline dynamically or paste the static HTML here
+        document.querySelector('#process .timeline').innerHTML = `
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>1. الاستكشاف والتحليل</h3>
+                    <p>نغوص في أعماق علامتك التجارية، نحلل الفضاء الرقمي حولك ونحدد الإحداثيات الدقيقة للنجاح.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>2. تصميم الاستراتيجية</h3>
+                    <p>نرسم خارطة النجوم: استراتيجية متكاملة تحدد المسار، الأدوات، والوجهة النهائية لرحلتنا معًا.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>3. الإطلاق والتنفيذ</h3>
+                    <p>يبدأ العد التنازلي! نطلق حملاتك وننفذ الخطة بإبداع ودقة، مع مراقبة مستمرة للمسار.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>4. التحسين والنمو</h3>
+                    <p>النجاح رحلة مستمرة. نحلل النتائج، نحسن الأداء، ونتوسع نحو مجرات جديدة من الفرص.</p>
+                </div>
+            </div>
+        `;
+
+        // Populate FAQ dynamically or paste the static HTML here
+        document.querySelector('#faq .faq-container').innerHTML = `
+            <div class="faq-item">
+                <details>
+                    <summary>كم من الوقت أحتاج لرؤية نتائج ملموسة؟</summary>
+                    <div class="faq-answer">
+                        <p>الرحلات الكونية تستغرق وقتاً! بينما يمكن للحملات الإعلانية أن تحقق نتائج سريعة خلال أسابيع، فإن بناء مجتمع قوي وتحقيق مراتب متقدمة في SEO هو استثمار طويل الأمد يؤتي ثماره خلال 3 إلى 6 أشهر ويستمر بالنمو.</p>
+                    </div>
+                </details>
+            </div>
+            <div class="faq-item">
+                <details>
+                    <summary>هل الباقات المعروضة ثابتة؟</summary>
+                    <div class="faq-answer">
+                        <p>الباقات هي نقاط انطلاق شائعة، ولكننا نؤمن أن كل علامة تجارية هي مجرة فريدة. يسعدنا تصميم خطة مخصصة بالكامل لتناسب أهدافك وميزانيتك المحددة.</p>
+                    </div>
+                </details>
+            </div>
+            <div class="faq-item">
+                <details>
+                    <summary>ما الذي يميزكم عن باقي الوكالات؟</summary>
+                    <div class="faq-answer">
+                        <p>نحن لا نبيع خدمات، بل نبني شراكات. شغفنا يكمن في دمج التحليل الدقيق مع الإبداع الذي يتجاوز المألوف. نحن نعتبر نجاحك هو نجاحنا الشخصي، ونعمل بشغف لتحقيق ذلك.</p>
+                    </div>
+                </details>
+            </div>
+        `;
+    </script>
+
+</body>
+</html>
